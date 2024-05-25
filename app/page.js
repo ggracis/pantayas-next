@@ -1,9 +1,12 @@
-import Image from "next/image";
+import Encabezado from "@/components/UI/Encabezado";
 
 export default function Home() {
   return (
     <main>
-      <div>Test</div>
+       <Encabezado
+            tituloEncabezado="Home"
+            bajadaEncabezado="Bienvenido a la página principal"
+          />
     </main>
   );
 }

@@ -7,7 +7,6 @@ const Footer = () => {
       position="fixed"
       bottom={0}
       width="100%"
-      height={28}
       borderTopWidth={1}
       borderColor="gray.100"
       bg="gray.800"

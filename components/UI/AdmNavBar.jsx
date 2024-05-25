@@ -17,9 +17,9 @@ import {
   import styles from "./AdmNavBar.module.css";
   import Link from "next/link";
   
-  const storedOpciones = JSON.parse(localStorage.getItem("userOpciones"));
-  const logoURL = storedOpciones ? storedOpciones.logoURL : "/chopin.png";
-  const nombreLocal = storedOpciones ? storedOpciones.nombreLocal : "Pantayas";
+  //const storedOpciones = JSON.parse(localStorage.getItem("userOpciones"));
+  const logoURL =/*  storedOpciones ? storedOpciones.logoURL : */ "/chopin.png";
+  const nombreLocal = /* storedOpciones ? storedOpciones.nombreLocal : */ "Pantayas";
   
   export default function AdmNavBar() {
     const { colorMode, toggleColorMode } = useColorMode();

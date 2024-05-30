@@ -1,23 +1,18 @@
+// components/UI/LoginForm.jsx
 "use client";
 import { useState } from "react";
-import useAuthStore from "@/stores/useAuthStore"; // Importar useAuthStore
+import useAuthStore from "@/stores/useAuthStore";
+import { FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
 import Encabezado from "./Encabezado";
-import { FormControl } from "@chakra-ui/react";
 
 const LoginForm = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-  const { loading, login } = useAuthStore(); // Obtener funciones de autenticación desde useAuthStore
+  const { loading, login, error } = useAuthStore(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await login(identifier, password); // Llamar a la función de inicio de sesión
-    } catch (error) {
-      setError("Failed to login");
-    }
+    await login(identifier, password);
   };
 
   return (
@@ -27,7 +22,7 @@ const LoginForm = () => {
         bajadaEncabezado="Login de usuarios"
       />
       <FormControl
-        w="80vw"
+        w="40vw"
         p={4}
         bg="blackAlpha.300"
         m="auto"
@@ -35,23 +30,27 @@ const LoginForm = () => {
         mb={8}
         borderRadius="lg"
       >
-        {error && <p>{error}</p>}
+        {error && <Text color="red.500">{error}</Text>}
         <form onSubmit={handleSubmit}>
-          <input
+          <FormLabel htmlFor="identifier">Username or Email</FormLabel>
+          <Input
             type="text"
-            placeholder="Username or Email"
+            id="identifier"
             value={identifier}
             onChange={(e) => setIdentifier(e.target.value)}
+            mb={4}
           />
-          <input
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
             type="password"
-            placeholder="Password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            mb={4}
           />
-          <button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} colorScheme="blue" width="full">
             {loading ? "Logging in..." : "Login"}
-          </button>
+          </Button>
         </form>
       </FormControl>
     </>

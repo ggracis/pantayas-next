@@ -6,11 +6,11 @@ const useAuthStore = create((set) => ({
   user: null,
   loading: false,
   error: null,
-  
+
   login: async (identifier, password) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post('/api/auth/local', { identifier, password });
+      const response = await axios.post('http://54.94.34.59:1337/api/auth/local', { identifier, password });
       localStorage.setItem('token', response.data.jwt);
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwt}`;
       set({ user: response.data.user, loading: false });
@@ -18,7 +18,7 @@ const useAuthStore = create((set) => ({
       set({ error: error.response?.data?.message || 'Failed to login', loading: false });
     }
   },
-  
+
   logout: () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
@@ -31,7 +31,7 @@ const useAuthStore = create((set) => ({
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       try {
-        const response = await axios.get('/api/auth/me');
+        const response = await axios.get('http://54.94.34.59:1337/api/users/me');
         set({ user: response.data, loading: false });
       } catch (error) {
         set({ error: error.response?.data?.message || 'Failed to fetch user', loading: false });

@@ -18,7 +18,7 @@ import {
   import Link from "next/link";
   
   //const storedOpciones = JSON.parse(localStorage.getItem("userOpciones"));
-  const logoURL =/*  storedOpciones ? storedOpciones.logoURL : */ "/chopin.png";
+  const logoURL =/*  storedOpciones ? storedOpciones.logoURL : */ "/screenet.svg";
   const nombreLocal = /* storedOpciones ? storedOpciones.nombreLocal : */ "Pantayas";
   
   export default function AdmNavBar() {
@@ -49,6 +49,9 @@ import {
           </Link>
           <Link className={styles.enlaces} href="/issues">
             Sugerencias 💡
+          </Link>
+          <Link className={styles.enlaces} href="/admin">
+            Admin 👨‍💻
           </Link>
         </nav>
       );

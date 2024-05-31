@@ -10,7 +10,7 @@ const useAuthStore = create((set) => ({
   login: async (identifier, password) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post('http://54.94.34.59:1337/api/auth/local', { identifier, password });
+      const response = await axios.post('https://screen.net.ar/strapi/api/auth/local', { identifier, password });
       localStorage.setItem('token', response.data.jwt);
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.jwt}`;
       set({ user: response.data.user, loading: false });
@@ -31,7 +31,7 @@ const useAuthStore = create((set) => ({
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       try {
-        const response = await axios.get('http://54.94.34.59:1337/api/users/me');
+        const response = await axios.get('https://screen.net.ar/strapi/api/users/me');
         set({ user: response.data, loading: false });
       } catch (error) {
         set({ error: error.response?.data?.message || 'Failed to fetch user', loading: false });

@@ -12,7 +12,7 @@ const Footer = () => {
       bg="gray.800"
     >
       <Box textAlign="center" px={4} py={2}>
-        <Text color="whiteAlpha.900">Pantayas © 2024</Text>
+        <Text color="whiteAlpha.900">NTQJ © 2024</Text>
       </Box>
     </Box>
   );

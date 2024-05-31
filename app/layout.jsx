@@ -1,9 +1,10 @@
+//app\layout.js
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Footer from "@/components/UI/Footer";
 import AdmNavBar from "@/components/UI/AdmNavBar";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +24,11 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <AdmNavBar />
-         
+
           {children}
           <Footer />
         </Providers>
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );

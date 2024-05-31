@@ -1,3 +1,4 @@
+//components\UI\AdmNavBar.jsx
 "use client";
 import {
   Box,
@@ -17,6 +18,8 @@ import { HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import styles from "./AdmNavBar.module.css";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import useAuthStore from "@/stores/useAuthStore";
+//import { useRouter } from "next/router";
 
 const logoURL = "/screenet.svg";
 const nombreLocal = "Pantayas";
@@ -24,24 +27,17 @@ const nombreLocal = "Pantayas";
 export default function AdmNavBar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  //const router = useRouter();
+  const { logout } = useAuthStore();
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     setIsAuthenticated(!!token);
   }, []);
 
-  const handleLogin = () => {
-    localStorage.setItem("authToken", "fake-token");
-    setIsAuthenticated(true);
-    console.log(localStorage.getItem("authToken"));
-        
-  };
-
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
     setIsAuthenticated(false);
-    console.log(localStorage.getItem("authToken"));
-    
+    logout();
   };
 
   const DesktopNav = () => (
@@ -150,13 +146,13 @@ export default function AdmNavBar() {
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
             {isAuthenticated ? (
-              <Button onClick={handleLogout} size="l" p={5}>
+              <Link className={styles.enlaces} onClick={handleLogout}>
                 Logout
-              </Button>
+              </Link>
             ) : (
-              <Button onClick={handleLogin} size="l" p={5}>
+              <Link className={styles.enlaces} href="/admin">
                 Login
-              </Button>
+              </Link>
             )}
           </Stack>
         </Flex>
